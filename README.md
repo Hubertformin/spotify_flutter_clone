@@ -1,8 +1,8 @@
-# spotify_clone
+# Spotify Desktop UI
 
-A new Flutter project.
+A simple Spotify Desktop UI built with Flutter
 
-## Getting Started
+## Getting Started with Flutter
 
 This project is a starting point for a Flutter application.
 
