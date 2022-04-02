@@ -1,6 +1,12 @@
 # Spotify Desktop UI
 
-A simple Spotify Desktop UI built with Flutter
+A simple Spotify Desktop UI built with Flutter.
+
+## Screenshots
+![Flutter Desktop UI](https://firebasestorage.googleapis.com/v0/b/hubert-formin.appspot.com/o/spotiffy_clone.png?alt=media&token=32290a43-7ff5-4013-a901-f577055ab9cb)
+
+![FlutterDesktop UI 2](https://firebasestorage.googleapis.com/v0/b/hubert-formin.appspot.com/o/spotify_clone2.png?alt=media&token=04502db1-88ff-4311-a67a-636b73d455fd)
+
 
 ## Getting Started with Flutter
 
