@@ -3,14 +3,20 @@ import 'dart:io';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:spotify_clone/data/data.dart';
+import 'package:spotify_clone/screens/playlist_screen.dart';
 import 'package:spotify_clone/widgets/widgets.dart';
+
+import 'models/current_track_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!kIsWeb && (Platform.isMacOS || Platform.isLinux || Platform.isWindows)) {
     await DesktopWindow.setMinWindowSize(const Size(600, 900));
   }
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => CurrentTrackModel(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -35,9 +41,10 @@ class MyApp extends StatelessWidget {
           headline2: const TextStyle(
               fontSize: 32.0, color: Colors.white, fontWeight: FontWeight.bold),
           headline4: TextStyle(
+              fontSize: 12.0,
+              color: Colors.grey[300],
               fontWeight: FontWeight.w500,
-              fontSize: 14.0,
-              color: Colors.grey[300]),
+              letterSpacing: 2.0),
           bodyText1: TextStyle(
             color: Colors.grey[300],
             fontSize: 14.0,
@@ -51,13 +58,13 @@ class MyApp extends StatelessWidget {
         ),
         // primarySwatch: Colors.blue,
       ),
-      home: const Shell(),
+      home: Shell(),
     );
   }
 }
 
 class Shell extends StatelessWidget {
-  const Shell({Key? key}) : super(key: key);
+  // const Shell({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +73,17 @@ class Shell extends StatelessWidget {
         children: [
           Expanded(
             child: Row(
-              children: const [
-                SideMenu(),
-                // Playlist screen
+              children: [
+                if (MediaQuery.of(context).size.width > 800) SideMenu(),
+                const Expanded(
+                  child: PlaylistScreen(
+                    playlist: lofihiphopPlaylist,
+                  ),
+                )
               ],
             ),
           ),
-          Container(
-            height: 84.0,
-            width: double.infinity,
-            color: Colors.blue,
-          )
+          CurrentTrack()
         ],
       ),
     );
